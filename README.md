@@ -1,207 +1,102 @@
-# GLPI IT Service Desk Lab
+# IT Helpdesk & Ticketing System Lab
+
+**GLPI | Docker | MySQL | IT Support L1/L2**
 
 ## Project Overview
 
-This project demonstrates a simulated corporate IT Service Desk environment built using **GLPI** and **Docker Desktop**.
+I built a working IT Helpdesk and Ticketing System using GLPI and Docker Desktop.
 
-The objective was to gain hands-on experience with **L1/L2 IT Support workflows**, including:
+The goal was to practice how IT Support Technicians manage employee requests, investigate technical problems, assign tickets, approve equipment requests, and track IT assets.
 
-- User account and role management
-- Incident and service request management
-- Troubleshooting documentation
-- Manager approval workflows
-- Technician task management
-- IT asset inventory and assignment
-- Ticket resolution and closure
+The project includes two simulated support scenarios:
+
+1. **Incident:** A user cannot log in to their Windows domain account.
+2. **Service Request:** An employee requests a second monitor.
 
 All scenarios were performed in a personal training environment.
 
 ## Technologies Used
 
-- GLPI (IT Service Management)
-- Docker Desktop
-- Docker Compose
-- MySQL
-- Windows 11
-- PowerShell
+- **GLPI:** Ticket management and IT asset tracking
+- **Docker Desktop:** Container management
+- **Docker Compose:** Application deployment
+- **MySQL:** Database
+- **Windows 11:** Host operating system
+- **PowerShell:** Docker commands and environment setup
 
-## Lab Environment
+## 1. Lab Setup
 
 GLPI was deployed locally using Docker Compose.
 
-The environment consists of:
+The environment contains:
 
-- GLPI application container
-- MySQL database container
+- A GLPI application container
+- A MySQL database container
 - Persistent Docker volumes
-- Web interface accessible at `http://localhost`
+- A web interface available at `http://localhost`
 
-## 1. User Account Configuration
+## 2. User Accounts and Permissions
 
-Three user accounts were configured to simulate different responsibilities within an IT department.
+I configured three user accounts to simulate a small company's IT support environment.
 
-| Account | GLPI Profile | Responsibility |
+| Account | GLPI Role | Responsibility |
 |---|---|---|
-| Technician IT | Technician | Processes tickets and manages IT assets |
-| Manager IT | Supervisor | Reviews and approves requests |
 | Adam Smith | Self-Service | Submits IT support requests |
+| Technician IT | Technician | Investigates and resolves tickets |
+| Manager IT | Supervisor | Reviews and approves requests |
 
 ### User Accounts
 
-![GLPI User Accounts](02-user-accounts.png)
+![User Accounts](02-user-accounts.png)
 
 ### Technician Permissions
 
-![Technician Role](03-technician-role.png)
+![Technician Permissions](03-technician-role.png)
 
 ### Manager Permissions
 
-![Manager Role](04-manager-role.png)
+![Manager Permissions](04-manager-role.png)
 
 ### End User Permissions
 
-![End User Role](05-end-user-role.png)
+![End User Permissions](05-end-user-role.png)
 
-## 2. Incident Management: Windows Domain Login Failure
+## 3. Incident Management: Windows Login Problem
 
-**Ticket #1: User cannot log in to Windows domain**
+**Ticket #1 | Incident | High Priority**
 
-**Type:** Incident  
-**Priority:** High  
-**Affected user:** Adam Smith  
-**Workstation:** WIN11-CLIENT01
+### The Problem
 
-### Problem Description
+An employee reported that they could not log in to their Windows workstation.
 
-The user reported being unable to sign in to a Windows workstation using domain credentials.
-
-The reported error was:
-
-> The referenced account is currently locked out and may not be logged on to.
+The error indicated that the domain account was locked.
 
 ### Investigation
 
-The simulated troubleshooting process included:
+I simulated an L1 IT Support troubleshooting process:
 
-1. Verifying the user's identity.
-2. Gathering information about recent password changes.
-3. Identifying repeated login attempts with an outdated password.
-4. Checking the reported account lockout scenario.
-5. Documenting the investigation in GLPI.
+1. Verified the user's identity.
+2. Asked when the problem started.
+3. Identified a recent password change.
+4. Investigated multiple login attempts using the old password.
+5. Documented the suspected account lockout.
 
-### Incident Documentation
+### Investigation Screenshot
 
 ![Incident Investigation](06-incident-investigation.png)
 
 ### Resolution
 
-A simulated resolution was documented, covering account unlock, successful sign-in with the updated password, and verification of access to company resources.
+I documented a simulated resolution involving:
 
-**Root cause:** Multiple failed login attempts using an outdated password.
+1. Checking the account status in Active Directory.
+2. Confirming the account lockout.
+3. Unlocking the account.
+4. Testing login with the updated password.
+5. Confirming access to company resources.
 
-**Final status:** Closed
+**Root Cause:** Multiple failed login attempts using an outdated password.
 
-![Incident Resolution](07-incident-resolution.png)
+**Final Status:** Closed
 
-## 3. Service Request: Second Monitor
-
-**Ticket #52: Request for a second monitor**
-
-**Type:** Service Request  
-**Priority:** Low  
-**Requester:** Adam Smith  
-**Department:** Finance  
-**Workstation:** WIN11-CLIENT01
-
-### Request Description
-
-An employee requested a second monitor to improve productivity while working with Excel spreadsheets and business applications.
-
-Requested equipment:
-
-- One 24-inch monitor
-- Compatible HDMI or DisplayPort cable
-
-### Manager Approval
-
-The IT Technician submitted the equipment request to the IT Manager for approval.
-
-The manager reviewed the request and granted approval using GLPI's built-in approval workflow.
-
-![Monitor Request Approval](08-monitor-request-approval.png)
-
-### Technician Task
-
-A technician task was created to:
-
-1. Check monitor availability in inventory.
-2. Verify display connection compatibility.
-3. Prepare the monitor for assignment.
-
-### IT Asset Management
-
-A monitor was registered in GLPI and assigned to Adam Smith.
-
-| Property | Value |
-|---|---|
-| Asset Name | MON-001 |
-| Screen Size | 24 inches |
-| Serial Number | LAB-MON-001 |
-| Inventory Number | IT-2026-001 |
-| Assigned User | Adam Smith |
-| Workstation | WIN11-CLIENT01 |
-| Connections | HDMI / DisplayPort |
-
-![Monitor Asset Assignment](10-monitor-asset-assignment.png)
-
-### Asset and Ticket Linking
-
-The monitor asset was linked to ticket #52, providing traceability between the employee's request and the assigned equipment.
-
-![Monitor Linked Ticket](11-monitor-linked-ticket.png)
-
-### Service Request Resolution
-
-The simulated resolution documents:
-
-- Manager approval received
-- Monitor assigned to the employee
-- Monitor connected to the workstation
-- Display functionality verified
-- Service request marked as resolved
-
-**Final status:** Solved
-
-![Monitor Request Resolution](09-monitor-request-resolution.png)
-
-## 4. Ticket Overview
-
-The GLPI ticket dashboard was used to monitor incident and service request statuses.
-
-![Ticket Overview](06-ticket-overview.png)
-
-## Skills Demonstrated
-
-- IT Service Management (ITSM)
-- L1/L2 Helpdesk workflows
-- Incident management
-- Service request management
-- Troubleshooting and root cause documentation
-- Role-based access control (RBAC)
-- Approval workflows
-- IT asset management
-- Asset-to-ticket relationships
-- Technical documentation
-- Docker-based application deployment
-
-## Key Takeaways
-
-This lab provided practical experience with managing IT support workflows in GLPI.
-
-It helped demonstrate the differences between **incidents** and **service requests**, how requests move through approval processes, and how IT assets can be tracked and associated with support tickets.
-
-The project also reinforced the importance of documenting troubleshooting steps, maintaining clear ticket histories, and assigning appropriate permissions to different user roles.
-
----
-
-**Disclaimer:** This project was completed in a personal training lab. All users, devices, assets, and support scenarios are simulated. The documented incident and equipment installation are simulated workflows, not verified production changes.
+![Incident Resolution](07-incident-resolution
