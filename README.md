@@ -139,3 +139,14 @@ It also strengthened my understanding of structured IT Service Desk processes in
 ---
 
 **Disclaimer:** This project was completed in a personal training lab. All users, devices, assets, and support scenarios are simulated.
+
+## Screenshots
+
+### User Accounts
+![GLPI User Accounts](02-user-accounts.png)
+
+### Technician Role
+![Technician Permissions](03-technician-role.png)
+
+### Manager Role
+![Manager Permissions](04-manager-role.png)
